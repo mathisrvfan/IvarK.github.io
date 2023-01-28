@@ -80,7 +80,7 @@ function getDimensionFinalMultiplier(tier) {
 
 
 function getMoneyPerSecond() {
-  return getDimensionFinalMultiplier(1)*Math.floor(player.firstAmount)/player.tickspeed;
+  return getDimensionFinalMultiplier(1)*Math.floor(player.firstAmount)/(Math.pow(player.tickspeed,0.25));
 }
 
 function getDimensionDescription(tier) {

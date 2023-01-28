@@ -6,8 +6,8 @@ function canBuyTickSpeed() {
 function getTickSpeedMultiplier() {
   if (player.currentChallenge == "postc3") return 1;
   if (player.galaxies + player.replicanti.galaxies + player.dilation.freeGalaxies < 3) {
-      let baseMultiplier = 0.9;
-      if (player.galaxies == 0) baseMultiplier = 0.89
+      let baseMultiplier = 0.1;
+      if (player.galaxies == 0) baseMultiplier = 0.088
       if (player.currentChallenge == "challenge6" || player.currentChallenge == "postc1") baseMultiplier = 0.93;
       let perGalaxy = 0.02;
       let galaxies = player.galaxies+player.replicanti.galaxies+player.dilation.freeGalaxies
@@ -24,9 +24,9 @@ function getTickSpeedMultiplier() {
 
       return baseMultiplier-(player.galaxies*perGalaxy);
   } else {
-      let baseMultiplier = 0.8
+      let baseMultiplier = 0.1
       if (player.currentChallenge == "challenge6" || player.currentChallenge == "postc1") baseMultiplier = 0.83
-      let perGalaxy = 0.965
+      let perGalaxy = 0.111
       let galaxies = player.galaxies-2+player.replicanti.galaxies+player.dilation.freeGalaxies
       if (player.timestudy.studies.includes(133)) galaxies += player.replicanti.galaxies/2
       if (player.timestudy.studies.includes(132)) galaxies += player.replicanti.galaxies*0.4
@@ -53,7 +53,7 @@ function buyTickSpeed() {
       return false;
   }
 
-  player.money = player.money.minus(player.tickSpeedCost);
+  player.money = player.money.div(player.tickSpeedCost);
   if (player.currentChallenge != "challenge5" && player.currentChallenge != "postc5") player.tickSpeedCost = player.tickSpeedCost.times(player.tickspeedMultiplier);
   else multiplySameCosts(player.tickSpeedCost)
   if (player.tickSpeedCost.gte(Number.MAX_VALUE)) player.tickspeedMultiplier = player.tickspeedMultiplier.times(player.tickSpeedMultDecrease);
